@@ -6,7 +6,6 @@
 require'csv'
 require'pry'
 
-
 class Employee
 
   def initialize(filename)
@@ -15,6 +14,7 @@ class Employee
     @salary_employees = []
     @commission_employees = []
     @quota_employees =[]
+
   end
 
   def get_employee_list
@@ -35,11 +35,17 @@ class Employee
     puts @quota_employees
       #if employee
   end
+
+  def make_salary_based
+    binding.pry
+    SalaryBased.new(@salary_employees)
+  end
+
+
+
 end
 
-employee = Employee.new('employee_list.csv')
-employee.get_employee_list
-employee.categorize_employees
+
 
 #Owner class
 #   monthly quota must hit 250,000 for owner to get 1000 bonus
@@ -86,10 +92,10 @@ end
 #   Non-commission/quota employees
 class SalaryBased
 
-  def initialize
-
+  def initialize(salary_employees)
+    @salary_employees = salary_employees
+    binding.pry
   end
-
 
 
 end
@@ -98,9 +104,22 @@ end
 #   will determine any commission
 
 
+
+class CommissionSalesPerson
+  def initialize(commission_employees)
+    @commission_employees = commission_employees
+  end
+
+end
+
+
 #QuotaSalesPerson Class
 # Quota amount is either 5000 or 10,000
 #  will determine any quota
+
+class QuotaSalesPerson
+
+end
 
 
 
@@ -138,6 +157,11 @@ class Sale < Employee
   end
 
 end
+
+employee = Employee.new('employee_list.csv')
+employee.get_employee_list
+employee.categorize_employees
+employee.make_salary_based
 
 sale = Sale.new("sales_data.csv")
 sale.employee_sales
