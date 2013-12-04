@@ -1,19 +1,33 @@
-require'csv'
-require_relative('salary_based')
-require_relative('commission')
-require_relative('quota')
-require_relative('owner')
-
+require 'csv'
+require 'pry'
 class Employee
-  def initialize(employee)
-    @employee = employee
-    categorize_employees
+  attr_reader :last_name, :first_name, :base_pay, :tax
+  def initialize(attributes)
+    @last_name = attributes['last_name']
+    @first_name = attributes['first_name']
+    @base_pay = attributes['base_pay'].to_i
+    @tax = 0.3
   end
 
-  def categorize_employees
-    SalaryBased.new(@employee) if @employee['pay_structure'] == "salary"
-    Commission.new(@employee) if @employee['pay_structure'] == "commission"
-    Quota.new(@employee) if @employee['pay_structure'] == "quota"
-    Owner.new(@employee) if @employee['pay_structure'] == "owner"
+  def display
+    commission_display
+  end
+
+  def calculate_tax
+    gross_pay * @tax
+  end
+
+  def gross_pay
+    (@base_pay / 12)
+  end
+
+  def net_pay
+    gross_pay - calculate_tax
+  end
+
+  def display
+    puts "***#{@first_name} #{@last_name}***"
+    puts "Gross Salary: #{gross_pay}"
+    puts "Net Pay: #{net_pay}\n"
   end
 end

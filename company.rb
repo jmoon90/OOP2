@@ -1,12 +1,37 @@
-require'csv'
-require_relative('employee')
+require 'csv'
+require 'pry'
 
 class Company
-  def self.get_employee_list
+  attr_reader :employees
+
+  def initialize
+    @employees = []
+  end
+
+  def get_employees
     CSV.foreach('employee_list.csv', headers: true) do |row|
-     Employee.new(row.to_hash)
+      pay_structure = row['pay_structure']
+      employee = nil
+      if pay_structure == "commission"
+        employee = Commission.new(row)
+      elsif pay_structure == "quota"
+        employee = Quota.new(row)
+      elsif pay_structure == "owner"
+        employee = Owner.new(row)
+      else
+        employee = Employee.new(row)
+      end
+      @employees << employee
     end
+  end
+
+  def display
+    @employees.each do |employee|
+      puts employee.display
+    end
+    # print out each of their
   end
 end
 
-Company.get_employee_list
+
+

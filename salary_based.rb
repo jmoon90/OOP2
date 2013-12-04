@@ -1,11 +1,9 @@
-class SalaryBased
+require 'pry'
+class SalaryBased < Employee
   def initialize(employee)
-    @employee = employee
-    @tax = 0.3
-    calculate_tax
-    gross_pay
-    net_pay
-    display
+     binding.pry
+    super
+
   end
 
   def calculate_tax
