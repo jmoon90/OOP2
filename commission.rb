@@ -1,8 +1,6 @@
-require'pry'
 require_relative 'sales'
 
 class Commission < Sales
-
   def initialize(commission_employees)
     @tax = 0.3
     @commission_employees = commission_employees
@@ -10,6 +8,7 @@ class Commission < Sales
     gross_pay
     calculate_tax
     net_pay
+    display
   end
 
   def calculate_tax
@@ -27,11 +26,16 @@ class Commission < Sales
     else
       commission['Bobby'] * 0.015
     end
-
   end
 
   def net_pay
     gross_pay - calculate_tax
   end
 
+  def display
+    puts "***#{@commission_employees['first_name']} #{@commission_employees['last_name']}***"
+    puts "Gross Salary: #{gross_pay}"
+    puts "Commission: #{commission}"
+    puts "Net Pay: #{net_pay.round(2)}\n\n"
+  end
 end

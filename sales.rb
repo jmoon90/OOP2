@@ -1,8 +1,8 @@
 require'csv'
-require'pry'
 require_relative('salary_based')
 
 class Sales
+  attr_reader :monthly_sales
 
   def initialize
     @monthly_sales = []
@@ -34,8 +34,5 @@ class Sales
     sales_total['Wiggum'] = @wiggum
     sales_total['Groundskeeper'] = @groundskeeper
     sales_total
-
-
   end
-
 end

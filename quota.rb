@@ -1,7 +1,4 @@
-require'pry'
-
 class Quota
-
   def initialize(commission_employees)
     @tax = 0.3
     @commission_employees = commission_employees
@@ -9,6 +6,7 @@ class Quota
     gross_pay
     calculate_tax
     net_pay
+    display
   end
 
   def calculate_tax
@@ -16,13 +14,11 @@ class Quota
   end
 
   def gross_pay
-    binding.pry
     @gross_pay = (@commission_employees['base_pay'].to_i / 12) + @value
   end
 
   def commission
     commission = Sales.new.employee_sales
-    binding.pry
     if @commission_employees['last_name'] == "Wiggum"
       commission['Wiggum'] > 80000 ? @value = 10000 : @value = 0
     else
@@ -32,10 +28,15 @@ class Quota
   end
 
   def net_pay
-    binding.pry
     @gross_pay - calculate_tax
   end
 
+  def display
+    puts "***#{@commission_employees['first_name']} #{@commission_employees['last_name']}***"
+    puts "Gross Salary: #{gross_pay}"
+    puts "Commission: #{commission}"
+    puts "Net Pay: #{net_pay.round(2)}\n\n"
+  end
 end
 
 

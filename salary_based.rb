@@ -1,12 +1,11 @@
-require 'pry'
 class SalaryBased
-
   def initialize(employee)
     @employee = employee
     @tax = 0.3
     calculate_tax
     gross_pay
     net_pay
+    display
   end
 
   def calculate_tax
@@ -22,6 +21,11 @@ class SalaryBased
     gross_pay - calculate_tax
   end
 
+  def display
+    puts "***#{@employee['first_name']} #{@employee['last_name']}***"
+    puts "Gross Salary: #{gross_pay}"
+    puts "Net Pay: #{net_pay}\n\n"
+  end
 end
 
 
