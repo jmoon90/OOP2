@@ -17,8 +17,8 @@ class Employee
 
   end
 
-  def get_employee_list
-    CSV.foreach(@filename, headers: true) do |row|
+  def self.get_employee_list
+    CSV.foreach('employee_list.csv', headers: true) do |row|
       @employee_list << row.to_hash
     end
       @employee_list
@@ -69,7 +69,7 @@ end
 #  will determine gross salary (base + commissh + quota)
 #  will determine net salary (gross salary - tax)
 
-class PaySummary
+#class PaySummary
 
   def initialize(arguments)
     @base = arguments[:base] ||= 0
@@ -97,6 +97,7 @@ class SalaryBased
     binding.pry
   end
 
+  def
 
 end
 #CommissionSalesPerson class

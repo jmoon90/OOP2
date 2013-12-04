@@ -1,6 +1,9 @@
 require'csv'
 require'pry'
 require_relative('salary_based')
+require_relative('commission')
+require_relative('quota')
+
 
 
 class Employee
@@ -11,10 +14,9 @@ class Employee
   end
 
   def categorize_employees
-binding.pry
       SalaryBased.new(@employee) if @employee['pay_structure'] == "salary"
-      @commission_employees << employee if @employee['pay_structure'] == "commission"
-      @quota_employees << employee if @employee['pay_structure'] == "quota"
+      Commission.new(@employee) if @employee['pay_structure'] == "commission"
+      Quota.new(@employee) if @employee['pay_structure'] == "quota"
   end
 
 end
