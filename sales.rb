@@ -21,7 +21,6 @@ class Sales
 
   def employee_sales
     sales_total = {}
-
     @monthly_sales.each do |hash|
       sale_employee(hash)
     end
@@ -29,10 +28,11 @@ class Sales
   end
 
   def sale_employee(hash)
-    @bobby += hash['gross_sale_value'].to_i if hash['last_name'] == 'Bobby'
-    @wiggum += hash['gross_sale_value'].to_i if hash['last_name'] == 'Wiggum'
-    @groundskeeper += hash['gross_sale_value'].to_i if hash['last_name'] == 'Groundskeeper'
-    @lob += hash['gross_sale_value'].to_i if hash['last_name'] == 'Lob'
+    gsv = 'gross_sale_value'
+    @bobby += hash[gsv].to_i if hash['last_name'] == 'Bobby'
+    @wiggum += hash[gsv].to_i if hash['last_name'] == 'Wiggum'
+    @groundskeeper += hash[gsv].to_i if hash['last_name'] == 'Groundskeeper'
+    @lob += hash[gsv].to_i if hash['last_name'] == 'Lob'
   end
 
   def total_sale(sales_total)
