@@ -1,5 +1,4 @@
 require 'csv'
-require 'pry'
 class Employee
   attr_reader :last_name, :first_name, :base_pay, :tax
   def initialize(attributes)
@@ -7,10 +6,6 @@ class Employee
     @first_name = attributes['first_name']
     @base_pay = attributes['base_pay'].to_i
     @tax = 0.3
-  end
-
-  def display
-    commission_display
   end
 
   def calculate_tax

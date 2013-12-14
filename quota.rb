@@ -5,10 +5,10 @@ class Quota < Employee
 
   def commission
     commission = Sales.new.employee_sales
-    if @last_name == "Wiggum"
-      commission['Wiggum'] > 80000 ? @value = 10000 : @value = 0
+    if @last_name == 'Wiggum'
+      commission['Wiggum'] > 80_000 ? @value = 10_000 : @value = 0
     else
-      @value = 5000 if commission['Groundskeeper'] > 60000
+      @value = 5000 if commission['Groundskeeper'] > 60_000
     end
     @value
   end

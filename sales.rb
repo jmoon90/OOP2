@@ -1,5 +1,4 @@
 require'csv'
-require_relative('salary_based')
 
 class Sales
   attr_reader :monthly_sales
@@ -7,6 +6,10 @@ class Sales
   def initialize
     @monthly_sales = []
     read_in_sales
+    @bobby = 0
+    @wiggum = 0
+    @groundskeeper = 0
+    @lob = 0
   end
 
   def read_in_sales
@@ -17,22 +20,26 @@ class Sales
   end
 
   def employee_sales
-    @bobby = 0
-    @wiggum = 0
-    @groundskeeper = 0
-    @lob = 0
     sales_total = {}
 
     @monthly_sales.each do |hash|
-      @bobby += hash["gross_sale_value"].to_i if hash["last_name"] == "Bobby"
-      @wiggum += hash["gross_sale_value"].to_i if hash["last_name"] == "Wiggum"
-      @groundskeeper += hash["gross_sale_value"].to_i if hash["last_name"] == "Groundskeeper"
-      @lob += hash["gross_sale_value"].to_i if hash["last_name"] == "Lob"
+      sale_employee(hash)
     end
+    total_sale(sales_total)
+  end
+
+  def sale_employee(hash)
+    @bobby += hash['gross_sale_value'].to_i if hash['last_name'] == 'Bobby'
+    @wiggum += hash['gross_sale_value'].to_i if hash['last_name'] == 'Wiggum'
+    @groundskeeper += hash['gross_sale_value'].to_i if hash['last_name'] == 'Groundskeeper'
+    @lob += hash['gross_sale_value'].to_i if hash['last_name'] == 'Lob'
+  end
+
+  def total_sale(sales_total)
     sales_total['Bobby'] = @bobby
     sales_total['Lob'] = @lob
-    sales_total['Wiggum'] = @wiggum
     sales_total['Groundskeeper'] = @groundskeeper
+    sales_total['Wiggum'] = @wiggum
     sales_total
   end
 end

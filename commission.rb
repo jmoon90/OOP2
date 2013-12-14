@@ -1,6 +1,3 @@
-#require_relative 'sales'
-require 'pry'
-
 class Commission < Employee
   def gross_pay
     super + commission
@@ -8,7 +5,7 @@ class Commission < Employee
 
   def commission
     commission = Sales.new.employee_sales
-    if @last_name == "Lob"
+    if @last_name == 'Lob'
       commission['Lob'] * 0.005
     else
       commission['Bobby'] * 0.015

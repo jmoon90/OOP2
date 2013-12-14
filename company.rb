@@ -1,5 +1,4 @@
 require 'csv'
-require 'pry'
 
 class Company
   attr_reader :employees
@@ -12,11 +11,11 @@ class Company
     CSV.foreach('employee_list.csv', headers: true) do |row|
       pay_structure = row['pay_structure']
       employee = nil
-      if pay_structure == "commission"
+      if pay_structure == 'commission'
         employee = Commission.new(row)
-      elsif pay_structure == "quota"
+      elsif pay_structure == 'quota'
         employee = Quota.new(row)
-      elsif pay_structure == "owner"
+      elsif pay_structure == 'owner'
         employee = Owner.new(row)
       else
         employee = Employee.new(row)
@@ -29,7 +28,6 @@ class Company
     @employees.each do |employee|
       puts employee.display
     end
-    # print out each of their
   end
 end
 
