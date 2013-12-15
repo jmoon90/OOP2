@@ -30,6 +30,3 @@ class Company
     end
   end
 end
-
-
-

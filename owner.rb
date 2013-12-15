@@ -1,6 +1,6 @@
 class Owner < Employee
-  def gross_pay
-    (@base_pay / 12) + commission
+  def local_commission
+    commission
   end
 
   def commission
@@ -10,10 +10,7 @@ class Owner < Employee
     @bonus
   end
 
-  def display
-    puts "***#{@first_name} #{@last_name}***"
-    puts "Gross Salary: #{gross_pay}"
+  def detailed_display
     puts "Commission: #{commission}"
-    puts "Net Pay: #{net_pay.round(2)}\n"
   end
 end
